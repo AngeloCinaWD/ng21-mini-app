@@ -4,8 +4,6 @@
   <li>{{ user.name }}</li>
   } @empty { non c'è nessun user }
 </ul>
-} @else {
-<span>{{ usersService.errorPublic().message }}</span>
 }
 <div></div>
 <!--  -->
@@ -19,3 +17,11 @@
 {{ usersService.usersHttpResource.error()?.message }} ciao }
 
 <!-- {{ usersService.usersHttpResource.hasValue() | json }} -->
+
+<button (click)="usersService.login()">Login</button>
+
+@if (usersService.logged()) {
+<button (click)="usersService.loggaTasks()">Logga tasks</button>
+} @if(usersService.errorPublic().status) {
+<span>{{ usersService.errorPublic().message }}</span>
+}
