@@ -24,6 +24,7 @@
 
       <div class="form-group">
         <label for="password">{{ lang.t().profile_password }}</label>
+        <p class="hint">{{ lang.t().profile_password_hint }}</p>
         <div class="password-wrapper">
           <input
             id="password"
@@ -55,6 +56,7 @@
       @if (profileForm.password().value()) {
         <div class="form-group">
           <label for="confirmPassword">{{ lang.t().profile_confirm_password }}</label>
+          <p class="hint warning">{{ lang.t().profile_confirm_hint }}</p>
           <div class="password-wrapper">
             <input
               id="confirmPassword"

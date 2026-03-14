@@ -1,7 +1,12 @@
 .home-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: 24px;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .welcome h2 {
@@ -114,6 +119,15 @@
 
 .recent-tasks {
   margin-top: 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.recent-tasks ul {
+  flex: 1;
+  overflow-y: auto;
 }
 
 .recent-tasks h3 {

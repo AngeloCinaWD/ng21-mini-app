@@ -113,6 +113,8 @@
     "profile_confirm_password": "Conferma password",
     "profile_save": "Salva modifiche",
     "profile_saved": "Profilo aggiornato con successo",
+    "profile_password_hint": "Lascia vuoto se non vuoi modificare la password",
+    "profile_confirm_hint": "Conferma la nuova password per applicare la modifica",
     "profile_password_min": "La password deve avere almeno 8 caratteri",
     "profile_password_mismatch": "Le password non coincidono",
 
@@ -233,6 +235,8 @@
     "profile_confirm_password": "Confirm password",
     "profile_save": "Save changes",
     "profile_saved": "Profile updated successfully",
+    "profile_password_hint": "Leave empty if you don't want to change the password",
+    "profile_confirm_hint": "Confirm the new password to apply the change",
     "profile_password_min": "Password must be at least 8 characters",
     "profile_password_mismatch": "Passwords do not match",
 
@@ -353,6 +357,8 @@
     "profile_confirm_password": "Confirmar contraseña",
     "profile_save": "Guardar cambios",
     "profile_saved": "Perfil actualizado con éxito",
+    "profile_password_hint": "Deja vacío si no quieres cambiar la contraseña",
+    "profile_confirm_hint": "Confirma la nueva contraseña para aplicar el cambio",
     "profile_password_min": "La contraseña debe tener al menos 8 caracteres",
     "profile_password_mismatch": "Las contraseñas no coinciden",
 
@@ -473,6 +479,8 @@
     "profile_confirm_password": "Confirmer le mot de passe",
     "profile_save": "Enregistrer les modifications",
     "profile_saved": "Profil mis à jour avec succès",
+    "profile_password_hint": "Laissez vide si vous ne voulez pas changer le mot de passe",
+    "profile_confirm_hint": "Confirmez le nouveau mot de passe pour appliquer le changement",
     "profile_password_min": "Le mot de passe doit contenir au moins 8 caractères",
     "profile_password_mismatch": "Les mots de passe ne correspondent pas",
 
@@ -593,6 +601,8 @@
     "profile_confirm_password": "Passwort bestätigen",
     "profile_save": "Änderungen speichern",
     "profile_saved": "Profil erfolgreich aktualisiert",
+    "profile_password_hint": "Leer lassen, wenn Sie das Passwort nicht ändern möchten",
+    "profile_confirm_hint": "Bestätigen Sie das neue Passwort, um die Änderung anzuwenden",
     "profile_password_min": "Das Passwort muss mindestens 8 Zeichen lang sein",
     "profile_password_mismatch": "Die Passwörter stimmen nicht überein",
 
