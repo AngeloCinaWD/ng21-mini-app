@@ -20,7 +20,7 @@ export class UsersService {
   usersHttpResource = httpResource<User[]>(() => this.urlJsonPlaceholder);
 
   usernameUsers = computed<User['username'][]>(() =>
-    (this.usersHttpResource.value() ?? []).map((user: User) => user.username)
+    (this.usersHttpResource.value() ?? []).map((user: User) => user.username),
   );
 
   private error = signal<Error>({
@@ -32,7 +32,7 @@ export class UsersService {
   private bearer_token = signal<string>('');
 
   logged = computed<boolean>(
-    () => typeof this.bearer_token() === 'string' && this.bearer_token().trim() !== ''
+    () => typeof this.bearer_token() === 'string' && this.bearer_token().trim() !== '',
   );
 
   constructor() {
@@ -60,11 +60,6 @@ export class UsersService {
   }
 
   login() {
-    // const headers = new HttpHeaders({
-    //   Accept: 'application/vnd.api+json',
-    //   'Content-Type': 'application/vnd.api+json',
-    // });
-
     const data = {
       email: 'angelo@angelo.angelo',
       password: '123456abcd',
@@ -77,19 +72,21 @@ export class UsersService {
       .subscribe((res) => this.bearer_token.set(res.data.token));
   }
 
-  loggaTasks() {
-    // const headers = new HttpHeaders({
-    //   Accept: 'application/vnd.api+json',
-    //   'Content-Type': 'application/vnd.api+json',
-    //   Authorization: `Bearer ${this.bearer_token()}`,
-    // });
+  logout() {
+    this.http
+      .post('http://127.0.0.1:8000/api/logout', {}, {
+        headers: HTTPHEADERREQUEST.set('Authorization', `Bearer ${this.bearer_token()}`),
+      })
+      .subscribe(() => this.bearer_token.set(''));
+  }
 
+  loggaTasks() {
     this.http
       .get<{ data: { id: string; user: { id: string; name: string } }[] }>(
         'http://127.0.0.1:8000/api/tasks',
         {
           headers: HTTPHEADERREQUEST.set('Authorization', `Bearer ${this.bearer_token()}`),
-        }
+        },
       )
       .pipe(map((res) => res.data.map((task) => task.user.name)))
       .subscribe({

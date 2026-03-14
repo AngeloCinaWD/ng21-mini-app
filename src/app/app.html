@@ -22,6 +22,7 @@
 
 @if (usersService.logged()) {
 <button (click)="usersService.loggaTasks()">Logga tasks</button>
+<button (click)="usersService.logout()">Logout</button>
 } @if(usersService.errorPublic().status) {
 <span>{{ usersService.errorPublic().message }}</span>
 }
