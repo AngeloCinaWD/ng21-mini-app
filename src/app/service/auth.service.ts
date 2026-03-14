@@ -12,13 +12,19 @@ export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
 
-  private bearer_token = signal<string>(localStorage.getItem(TOKEN_KEY) ?? '');
+  private bearer_token = signal<string>(
+    localStorage.getItem(TOKEN_KEY) ?? sessionStorage.getItem(TOKEN_KEY) ?? '',
+  );
 
   logged = computed<boolean>(() => this.bearer_token().trim() !== '');
 
   token = computed<string>(() => this.bearer_token());
 
-  login(email: string, password: string) {
+  loginError = signal<string>('');
+  registerError = signal<string>('');
+
+  login(email: string, password: string, rememberMe: boolean) {
+    this.loginError.set('');
     this.http
       .post<{ data: { token: string } }>(
         'http://127.0.0.1:8000/api/login',
@@ -28,12 +34,34 @@ export class AuthService {
       .subscribe({
         next: (res) => {
           const token = res.data.token;
-          localStorage.setItem(TOKEN_KEY, token);
+          this.storeToken(token, rememberMe);
           this.bearer_token.set(token);
           this.router.navigate(['/home']);
         },
         error: () => {
           this.loginError.set('Email o password non validi');
+        },
+      });
+  }
+
+  register(name: string, email: string, password: string, password_confirmation: string) {
+    this.registerError.set('');
+    this.http
+      .post<{ data: { token: string } }>(
+        'http://127.0.0.1:8000/api/register',
+        { name, email, password, password_confirmation },
+        { headers: HTTPHEADERREQUEST },
+      )
+      .subscribe({
+        next: (res) => {
+          const token = res.data.token;
+          this.storeToken(token, true);
+          this.bearer_token.set(token);
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          const message = err.error?.message ?? 'Errore durante la registrazione';
+          this.registerError.set(message);
         },
       });
   }
@@ -49,10 +77,17 @@ export class AuthService {
       });
   }
 
-  loginError = signal<string>('');
+  private storeToken(token: string, rememberMe: boolean) {
+    if (rememberMe) {
+      localStorage.setItem(TOKEN_KEY, token);
+    } else {
+      sessionStorage.setItem(TOKEN_KEY, token);
+    }
+  }
 
   private clearSession() {
     localStorage.removeItem(TOKEN_KEY);
+    sessionStorage.removeItem(TOKEN_KEY);
     this.bearer_token.set('');
     this.router.navigate(['/login']);
   }
