@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import { TasksService } from '../../service/tasks.service';
+import { LanguageService } from '../../service/language.service';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ import { TasksService } from '../../service/tasks.service';
 export class HomeComponent implements OnInit {
   authService = inject(AuthService);
   tasksService = inject(TasksService);
+  lang = inject(LanguageService);
 
   today = new Date().toLocaleDateString('it-IT', {
     weekday: 'long',

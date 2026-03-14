@@ -1,7 +1,7 @@
 <div class="backdrop">
   <div class="modal">
     <div class="modal-header">
-      <h3>{{ isEdit() ? 'Modifica Task' : 'Nuovo Task' }}</h3>
+      <h3>{{ isEdit() ? lang.t().task_form_edit_title : lang.t().task_form_new_title }}</h3>
       <button class="close-btn" (click)="close.emit()">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"/>
@@ -12,19 +12,17 @@
     <div class="modal-body">
       <form (submit)="onSubmit($event)">
         <div class="form-group">
-          <label for="name">Nome</label>
+          <label for="name">{{ lang.t().task_form_name }}</label>
           <input id="name" type="text" [formField]="taskForm.name" />
           @if (taskForm.name().invalid() && taskForm.name().touched()) {
             <div class="field-errors">
-              @for (err of taskForm.name().errors(); track err.kind) {
-                <span>{{ err.message }}</span>
-              }
+              <span>{{ lang.t().task_form_name_required }}</span>
             </div>
           }
         </div>
 
         <div class="form-group">
-          <label for="description">Descrizione</label>
+          <label for="description">{{ lang.t().task_form_description }}</label>
           <textarea
             id="description"
             rows="3"
@@ -34,26 +32,22 @@
           ></textarea>
           @if (taskForm.description().invalid() && taskForm.description().touched()) {
             <div class="field-errors">
-              @for (err of taskForm.description().errors(); track err.kind) {
-                <span>{{ err.message }}</span>
-              }
+              <span>{{ lang.t().task_form_description_required }}</span>
             </div>
           }
         </div>
 
         <div class="form-group">
-          <label for="priority">Priority</label>
+          <label for="priority">{{ lang.t().task_form_priority }}</label>
           <select id="priority" [formField]="taskForm.priority" [class.placeholder]="taskForm.priority().value() === ''">
-            <option value="" disabled>Seleziona un livello di priorità</option>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
+            <option value="" disabled>{{ lang.t().task_form_priority_placeholder }}</option>
+            <option value="low">{{ lang.t().task_form_low }}</option>
+            <option value="medium">{{ lang.t().task_form_medium }}</option>
+            <option value="high">{{ lang.t().task_form_high }}</option>
           </select>
           @if (taskForm.priority().invalid() && taskForm.priority().touched()) {
             <div class="field-errors">
-              @for (err of taskForm.priority().errors(); track err.kind) {
-                <span>{{ err.message }}</span>
-              }
+              <span>{{ lang.t().task_form_priority_required }}</span>
             </div>
           }
         </div>
@@ -63,7 +57,7 @@
         }
 
         <button type="submit" [disabled]="taskForm().invalid()">
-          {{ isEdit() ? 'Salva' : 'Crea' }}
+          {{ isEdit() ? lang.t().task_form_save : lang.t().task_form_create }}
         </button>
       </form>
     </div>

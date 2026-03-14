@@ -10,6 +10,7 @@ import {
   requiredError,
 } from '@angular/forms/signals';
 import { AuthService } from '../../service/auth.service';
+import { LanguageService } from '../../service/language.service';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +20,7 @@ import { AuthService } from '../../service/auth.service';
 })
 export class RegisterComponent {
   authService = inject(AuthService);
+  lang = inject(LanguageService);
 
   registerModel = signal({
     name: '',
@@ -28,15 +30,15 @@ export class RegisterComponent {
   });
 
   registerForm = form(this.registerModel, (f) => {
-    required(f.name, { message: 'Nome obbligatorio' });
-    required(f.email, { message: 'Email obbligatoria' });
-    email(f.email, { message: 'Inserisci un\'email valida' });
-    required(f.password, { message: 'Password obbligatoria' });
-    minLength(f.password, 8, { message: 'La password deve avere almeno 8 caratteri' });
-    required(f.confirmPassword, { message: 'Conferma la password' });
+    required(f.name);
+    required(f.email);
+    email(f.email);
+    required(f.password);
+    minLength(f.password, 8);
+    required(f.confirmPassword);
     validate(f.confirmPassword, ({ value, valueOf }) => {
       if (value() !== valueOf(f.password)) {
-        return requiredError({ message: 'Le password non coincidono' });
+        return requiredError({ message: '' });
       }
       return undefined;
     });

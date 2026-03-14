@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { UsersService } from '../../service/users-service';
 import { UserModalComponent } from '../../components/user-modal/user-modal.component';
+import { LanguageService } from '../../service/language.service';
 import { UserJP } from '../../interface/userJp';
 
 @Component({
@@ -11,6 +12,7 @@ import { UserJP } from '../../interface/userJp';
 })
 export class UsersComponent {
   usersService = inject(UsersService);
+  lang = inject(LanguageService);
 
   selectedUser = signal<UserJP | null>(null);
 

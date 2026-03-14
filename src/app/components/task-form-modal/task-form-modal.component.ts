@@ -2,6 +2,7 @@ import { Component, inject, input, output, signal, OnInit, AfterViewInit, viewCh
 import { FormField, form, required } from '@angular/forms/signals';
 import { Task } from '../../interface/task';
 import { TasksService } from '../../service/tasks.service';
+import { LanguageService } from '../../service/language.service';
 
 @Component({
   selector: 'app-task-form-modal',
@@ -11,6 +12,7 @@ import { TasksService } from '../../service/tasks.service';
 })
 export class TaskFormModalComponent implements OnInit, AfterViewInit {
   private tasksService = inject(TasksService);
+  lang = inject(LanguageService);
 
   task = input<Task | null>(null);
   close = output<void>();
@@ -19,9 +21,9 @@ export class TaskFormModalComponent implements OnInit, AfterViewInit {
   formModel = signal({ name: '', description: '', priority: '' });
 
   taskForm = form(this.formModel, (f) => {
-    required(f.name, { message: 'Nome obbligatorio' });
-    required(f.description, { message: 'Descrizione obbligatoria' });
-    required(f.priority, { message: 'Seleziona una priorità' });
+    required(f.name);
+    required(f.description);
+    required(f.priority);
   });
 
   descriptionTextarea = viewChild<ElementRef<HTMLTextAreaElement>>('descriptionRef');
@@ -65,12 +67,12 @@ export class TaskFormModalComponent implements OnInit, AfterViewInit {
       const t = this.task()!;
       this.tasksService.updateTask(t.id, data).subscribe({
         next: () => this.saved.emit(),
-        error: (err) => this.error.set(err.error?.message ?? 'Errore durante il salvataggio'),
+        error: (err) => this.error.set(err.error?.message ?? this.lang.t().task_form_save_error),
       });
     } else {
       this.tasksService.createTask(data).subscribe({
         next: () => this.saved.emit(),
-        error: (err) => this.error.set(err.error?.message ?? 'Errore durante la creazione'),
+        error: (err) => this.error.set(err.error?.message ?? this.lang.t().task_form_create_error),
       });
     }
   }

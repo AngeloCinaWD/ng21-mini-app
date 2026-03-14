@@ -11,25 +11,25 @@
     </div>
     <div class="modal-body">
       <div class="section">
-        <h4>Info</h4>
-        <div class="field"><span class="label">Id</span><span>{{ user().id }}</span></div>
-        <div class="field"><span class="label">Username</span><span>{{ user().username }}</span></div>
-        <div class="field"><span class="label">Email</span><span>{{ user().email }}</span></div>
-        <div class="field"><span class="label">Phone</span><span>{{ user().phone }}</span></div>
-        <div class="field"><span class="label">Website</span><span>{{ user().website }}</span></div>
+        <h4>{{ lang.t().user_modal_info }}</h4>
+        <div class="field"><span class="label">{{ lang.t().user_modal_id }}</span><span>{{ user().id }}</span></div>
+        <div class="field"><span class="label">{{ lang.t().user_modal_username }}</span><span>{{ user().username }}</span></div>
+        <div class="field"><span class="label">{{ lang.t().user_modal_email }}</span><span>{{ user().email }}</span></div>
+        <div class="field"><span class="label">{{ lang.t().user_modal_phone }}</span><span>{{ user().phone }}</span></div>
+        <div class="field"><span class="label">{{ lang.t().user_modal_website }}</span><span>{{ user().website }}</span></div>
       </div>
       <div class="section">
-        <h4>Address</h4>
-        <div class="field"><span class="label">Street</span><span>{{ user().address.street }}, {{ user().address.suite }}</span></div>
-        <div class="field"><span class="label">City</span><span>{{ user().address.city }}</span></div>
-        <div class="field"><span class="label">Zipcode</span><span>{{ user().address.zipcode }}</span></div>
-        <div class="field"><span class="label">Geo</span><span>{{ user().address.geo.lat }}, {{ user().address.geo.lng }}</span></div>
+        <h4>{{ lang.t().user_modal_address }}</h4>
+        <div class="field"><span class="label">{{ lang.t().user_modal_street }}</span><span>{{ user().address.street }}, {{ user().address.suite }}</span></div>
+        <div class="field"><span class="label">{{ lang.t().user_modal_city }}</span><span>{{ user().address.city }}</span></div>
+        <div class="field"><span class="label">{{ lang.t().user_modal_zipcode }}</span><span>{{ user().address.zipcode }}</span></div>
+        <div class="field"><span class="label">{{ lang.t().user_modal_geo }}</span><span>{{ user().address.geo.lat }}, {{ user().address.geo.lng }}</span></div>
       </div>
       <div class="section">
-        <h4>Company</h4>
-        <div class="field"><span class="label">Name</span><span>{{ user().company.name }}</span></div>
-        <div class="field"><span class="label">Catch Phrase</span><span>{{ user().company.catchPhrase }}</span></div>
-        <div class="field"><span class="label">BS</span><span>{{ user().company.bs }}</span></div>
+        <h4>{{ lang.t().user_modal_company }}</h4>
+        <div class="field"><span class="label">{{ lang.t().user_modal_company_name }}</span><span>{{ user().company.name }}</span></div>
+        <div class="field"><span class="label">{{ lang.t().user_modal_catch_phrase }}</span><span>{{ user().company.catchPhrase }}</span></div>
+        <div class="field"><span class="label">{{ lang.t().user_modal_bs }}</span><span>{{ user().company.bs }}</span></div>
       </div>
     </div>
   </div>

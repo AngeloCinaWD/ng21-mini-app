@@ -10,7 +10,7 @@ header {
   box-sizing: border-box;
 }
 
-.nav-left {
+.nav-center {
   display: flex;
   align-items: center;
   gap: 32px;
@@ -86,7 +86,67 @@ header {
   user-select: none;
 }
 
-button {
+.lang-dropdown {
+  position: relative;
+}
+
+.lang-current {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 6px 10px;
+  color: white;
+}
+
+.lang-current:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.lang-current .flag {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.lang-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 100;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+}
+
+.lang-option:hover {
+  background: #f5f5f5;
+}
+
+.lang-option .flag {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.logout-btn {
   padding: 8px 18px;
   background: rgba(255, 255, 255, 0.15);
   color: white;
@@ -96,6 +156,6 @@ button {
   font-size: 15px;
 }
 
-button:hover {
+.logout-btn:hover {
   background: rgba(255, 255, 255, 0.25);
 }

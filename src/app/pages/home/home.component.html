@@ -1,41 +1,41 @@
 <div class="home-container">
   <section class="welcome">
-    <h2>Ciao, {{ authService.userNamePublic() }}</h2>
+    <h2>{{ lang.t().home_greeting }}, {{ authService.userNamePublic() }}</h2>
     <p class="date">{{ today }}</p>
   </section>
 
   <section class="stats-grid">
     <div class="stat-card total">
       <span class="stat-number">{{ tasksService.totalTasks() }}</span>
-      <span class="stat-label">Task totali</span>
+      <span class="stat-label">{{ lang.t().home_total_tasks }}</span>
     </div>
     <div class="stat-card high">
       <span class="stat-number">{{ tasksService.tasksByPriority().high }}</span>
-      <span class="stat-label">High</span>
+      <span class="stat-label">{{ lang.t().home_high }}</span>
     </div>
     <div class="stat-card medium">
       <span class="stat-number">{{ tasksService.tasksByPriority().medium }}</span>
-      <span class="stat-label">Medium</span>
+      <span class="stat-label">{{ lang.t().home_medium }}</span>
     </div>
     <div class="stat-card low">
       <span class="stat-number">{{ tasksService.tasksByPriority().low }}</span>
-      <span class="stat-label">Low</span>
+      <span class="stat-label">{{ lang.t().home_low }}</span>
     </div>
     <div class="stat-card today">
       <span class="stat-number">{{ tasksService.todayTasks() }}</span>
-      <span class="stat-label">Creati oggi</span>
+      <span class="stat-label">{{ lang.t().home_created_today }}</span>
     </div>
   </section>
 
   <section class="quick-actions">
-    <h3>Azioni rapide</h3>
+    <h3>{{ lang.t().home_quick_actions }}</h3>
     <div class="actions-row">
       <a class="action-btn primary" routerLink="/tasks">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 11l3 3L22 4"/>
           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
         </svg>
-        Vedi Tasks
+        {{ lang.t().home_view_tasks }}
       </a>
       <a class="action-btn secondary" routerLink="/users">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -44,13 +44,13 @@
           <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
           <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
         </svg>
-        Vedi Users
+        {{ lang.t().home_view_users }}
       </a>
     </div>
   </section>
 
   <section class="recent-tasks">
-    <h3>Ultimi task</h3>
+    <h3>{{ lang.t().home_recent_tasks }}</h3>
     @if (tasksService.recentTasks().length > 0) {
       <ul>
         @for (task of tasksService.recentTasks(); track task.id) {
@@ -66,7 +66,7 @@
         }
       </ul>
     } @else {
-      <p class="empty">Nessun task ancora. Creane uno!</p>
+      <p class="empty">{{ lang.t().home_no_tasks_yet }}</p>
     }
   </section>
 </div>

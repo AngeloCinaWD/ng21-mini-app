@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormField, form, required, email } from '@angular/forms/signals';
 import { AuthService } from '../../service/auth.service';
+import { LanguageService } from '../../service/language.service';
 
 @Component({
   selector: 'app-login',
@@ -11,13 +12,14 @@ import { AuthService } from '../../service/auth.service';
 })
 export class LoginComponent {
   authService = inject(AuthService);
+  lang = inject(LanguageService);
 
   loginModel = signal({ email: '', password: '', rememberMe: false });
 
   loginForm = form(this.loginModel, (f) => {
-    required(f.email, { message: 'Email obbligatoria' });
-    email(f.email, { message: 'Inserisci un\'email valida' });
-    required(f.password, { message: 'Password obbligatoria' });
+    required(f.email);
+    email(f.email);
+    required(f.password);
   });
 
   showPassword = signal(false);

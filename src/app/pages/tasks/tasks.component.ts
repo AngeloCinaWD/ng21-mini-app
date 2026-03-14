@@ -2,6 +2,7 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { TasksService } from '../../service/tasks.service';
 import { TaskFormModalComponent } from '../../components/task-form-modal/task-form-modal.component';
 import { ConfirmModalComponent } from '../../components/confirm-modal/confirm-modal.component';
+import { LanguageService } from '../../service/language.service';
 import { Task } from '../../interface/task';
 
 type SortColumn = 'priority' | 'created_at';
@@ -17,6 +18,7 @@ const PRIORITY_ORDER: Record<string, number> = { low: 0, medium: 1, high: 2 };
 })
 export class TasksComponent implements OnInit {
   tasksService = inject(TasksService);
+  lang = inject(LanguageService);
 
   showFormModal = signal(false);
   editingTask = signal<Task | null>(null);
@@ -77,7 +79,7 @@ export class TasksComponent implements OnInit {
     const isEdit = this.editingTask() !== null;
     this.closeFormModal();
     this.tasksService.loadTasks();
-    this.showSuccess(isEdit ? 'Task modificato con successo' : 'Task creato con successo');
+    this.showSuccess(isEdit ? this.lang.t().tasks_updated_success : this.lang.t().tasks_created_success);
   }
 
   confirmDelete(task: Task) {
@@ -93,7 +95,7 @@ export class TasksComponent implements OnInit {
     this.deletingTask.set(null);
     this.tasksService.deleteTask(task.id).subscribe(() => {
       this.tasksService.loadTasks();
-      this.showSuccess('Task eliminato con successo');
+      this.showSuccess(this.lang.t().tasks_deleted_success);
     });
   }
 

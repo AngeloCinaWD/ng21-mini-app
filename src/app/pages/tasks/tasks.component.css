@@ -39,6 +39,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
+  table-layout: fixed;
 }
 
 thead {
@@ -62,11 +63,9 @@ td {
   border-bottom: 1px solid #e0e0e0;
 }
 
-td.description-cell {
-  white-space: nowrap;
+td.truncate {
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 0;
 }
 
 .center {

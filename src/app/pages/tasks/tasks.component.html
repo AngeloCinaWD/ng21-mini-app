@@ -9,31 +9,31 @@
         <line x1="12" y1="5" x2="12" y2="19"/>
         <line x1="5" y1="12" x2="19" y2="12"/>
       </svg>
-      Nuovo Task
+      {{ lang.t().tasks_new }}
     </button>
   </div>
 
   <div class="table-wrapper">
     <table>
       <colgroup>
+        <col style="width: 20%" />
         <col />
-        <col style="width: 100%" />
-        <col />
-        <col />
-        <col />
+        <col style="width: 90px" />
+        <col style="width: 100px" />
+        <col style="width: 56px" />
       </colgroup>
       <thead>
         <tr>
-          <th>Nome</th>
-          <th class="description-header">Descrizione</th>
+          <th>{{ lang.t().tasks_name }}</th>
+          <th class="description-header">{{ lang.t().tasks_description }}</th>
           <th class="sortable center" (click)="toggleSort('priority')">
-            Priority
+            {{ lang.t().tasks_priority }}
             @if (sortColumn() === 'priority') {
               <span class="sort-icon">{{ sortDirection() === 'asc' ? '▲' : '▼' }}</span>
             }
           </th>
           <th class="sortable center" (click)="toggleSort('created_at')">
-            Creato il
+            {{ lang.t().tasks_created_at }}
             @if (sortColumn() === 'created_at') {
               <span class="sort-icon">{{ sortDirection() === 'asc' ? '▲' : '▼' }}</span>
             }
@@ -44,8 +44,8 @@
       <tbody>
         @for (task of sortedTasks(); track task.id) {
           <tr>
-            <td>{{ task.attributes.name }}</td>
-            <td class="description-cell">{{ task.attributes.description }}</td>
+            <td class="truncate">{{ task.attributes.name }}</td>
+            <td class="truncate">{{ task.attributes.description }}</td>
             <td class="center">
               <span class="badge" [class]="'badge-' + task.attributes.priority">
                 {{ task.attributes.priority }}
@@ -53,13 +53,13 @@
             </td>
             <td class="center">{{ task.attributes.created_at }}</td>
             <td class="actions">
-              <button class="action-btn edit-btn" (click)="openEdit(task)" title="Modifica">
+              <button class="action-btn edit-btn" (click)="openEdit(task)" [title]="lang.t().tasks_edit">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
                   <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
                 </svg>
               </button>
-              <button class="action-btn delete-btn" (click)="confirmDelete(task)" title="Elimina">
+              <button class="action-btn delete-btn" (click)="confirmDelete(task)" [title]="lang.t().tasks_delete">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="3 6 5 6 21 6"/>
                   <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
@@ -71,7 +71,7 @@
           </tr>
         } @empty {
           <tr>
-            <td colspan="5" class="empty">Nessun task trovato</td>
+            <td colspan="5" class="empty">{{ lang.t().tasks_empty }}</td>
           </tr>
         }
       </tbody>
@@ -89,7 +89,7 @@
 
 @if (deletingTask()) {
   <app-confirm-modal
-    message="Sei sicuro di voler eliminare questo task?"
+    [message]="lang.t().tasks_confirm_delete"
     (confirm)="executeDelete()"
     (cancel)="cancelDelete()"
   />

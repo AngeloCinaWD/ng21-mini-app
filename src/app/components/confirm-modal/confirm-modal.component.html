@@ -2,8 +2,8 @@
   <div class="modal">
     <p>{{ message() }}</p>
     <div class="actions">
-      <button class="cancel-btn" (click)="cancel.emit()">Annulla</button>
-      <button class="confirm-btn" (click)="confirm.emit()">Conferma</button>
+      <button class="cancel-btn" (click)="cancel.emit()">{{ lang.t().confirm_cancel }}</button>
+      <button class="confirm-btn" (click)="confirm.emit()">{{ lang.t().confirm_confirm }}</button>
     </div>
   </div>
 </div>

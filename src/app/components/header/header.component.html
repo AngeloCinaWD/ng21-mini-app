@@ -1,19 +1,39 @@
 <header>
-  <nav class="nav-left">
-    <a class="app-logo" routerLink="/home">
-      <div class="logo-icon">
-        <span class="logo-ng">ng</span>
-        <span class="logo-version">21</span>
-      </div>
-      <span class="logo-text">mini-app</span>
-    </a>
-    <a class="nav-link" routerLink="/users">Users</a>
-    <a class="nav-link" routerLink="/tasks">Tasks</a>
+  <a class="app-logo" routerLink="/home">
+    <div class="logo-icon">
+      <span class="logo-ng">ng</span>
+      <span class="logo-version">21</span>
+    </div>
+    <span class="logo-text">mini-app</span>
+  </a>
+
+  <nav class="nav-center">
+    <a class="nav-link" routerLink="/users">{{ lang.t().header_users }}</a>
+    <a class="nav-link" routerLink="/tasks">{{ lang.t().header_tasks }}</a>
   </nav>
+
   <div class="user-section">
     <div class="avatar" [title]="authService.userNamePublic()">
       {{ authService.userInitials() }}
     </div>
-    <button (click)="authService.logout()">Logout</button>
+    <button class="logout-btn" (click)="authService.logout()">{{ lang.t().header_logout }}</button>
+    <div class="lang-dropdown">
+      <button class="lang-current" (click)="toggleDropdown()">
+        <span class="flag">{{ currentFlag.flag }}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      @if (dropdownOpen()) {
+        <div class="lang-menu">
+          @for (item of otherFlags; track item.lang) {
+            <button class="lang-option" (click)="selectLanguage(item.lang)">
+              <span class="flag">{{ item.flag }}</span>
+              <span>{{ item.label }}</span>
+            </button>
+          }
+        </div>
+      }
+    </div>
   </div>
 </header>
