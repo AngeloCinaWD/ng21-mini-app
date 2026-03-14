@@ -55,7 +55,7 @@ export class AuthService {
       .subscribe({
         next: (res) => {
           const token = res.data.token;
-          this.storeToken(token, true);
+          this.storeToken(token, false);
           this.bearer_token.set(token);
           this.router.navigate(['/home']);
         },

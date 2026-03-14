@@ -53,7 +53,8 @@ export class RegisterComponent {
     this.showConfirmPassword.update((v) => !v);
   }
 
-  onSubmit() {
+  onSubmit(event: Event) {
+    event.preventDefault();
     if (this.registerForm().invalid()) {
       return;
     }

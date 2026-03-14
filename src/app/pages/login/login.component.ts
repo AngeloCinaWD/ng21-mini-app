@@ -26,7 +26,8 @@ export class LoginComponent {
     this.showPassword.update((v) => !v);
   }
 
-  onSubmit() {
+  onSubmit(event: Event) {
+    event.preventDefault();
     if (this.loginForm().invalid()) {
       return;
     }
