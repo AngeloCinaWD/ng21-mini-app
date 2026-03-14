@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { Task } from '../interface/task';
 import { ApiResponse } from '../interface/apiResponse';
 import { AuthService } from './auth.service';
@@ -14,6 +14,25 @@ export class TasksService {
   private apiUrl = 'http://127.0.0.1:8000/api/tasks';
 
   tasks = signal<Task[]>([]);
+
+  totalTasks = computed(() => this.tasks().length);
+
+  tasksByPriority = computed(() => {
+    const tasks = this.tasks();
+    return {
+      high: tasks.filter((t) => t.attributes.priority === 'high').length,
+      medium: tasks.filter((t) => t.attributes.priority === 'medium').length,
+      low: tasks.filter((t) => t.attributes.priority === 'low').length,
+    };
+  });
+
+  recentTasks = computed(() => this.tasks().slice(0, 5));
+
+  todayTasks = computed(() => {
+    const today = new Date();
+    const todayStr = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+    return this.tasks().filter((t) => t.attributes.created_at === todayStr).length;
+  });
 
   private get headers() {
     return HTTPHEADERREQUEST.set('Authorization', `Bearer ${this.authService.token()}`);

@@ -1,3 +1,72 @@
 <div class="home-container">
-  <h2>Home</h2>
+  <section class="welcome">
+    <h2>Ciao, {{ authService.userNamePublic() }}</h2>
+    <p class="date">{{ today }}</p>
+  </section>
+
+  <section class="stats-grid">
+    <div class="stat-card total">
+      <span class="stat-number">{{ tasksService.totalTasks() }}</span>
+      <span class="stat-label">Task totali</span>
+    </div>
+    <div class="stat-card high">
+      <span class="stat-number">{{ tasksService.tasksByPriority().high }}</span>
+      <span class="stat-label">High</span>
+    </div>
+    <div class="stat-card medium">
+      <span class="stat-number">{{ tasksService.tasksByPriority().medium }}</span>
+      <span class="stat-label">Medium</span>
+    </div>
+    <div class="stat-card low">
+      <span class="stat-number">{{ tasksService.tasksByPriority().low }}</span>
+      <span class="stat-label">Low</span>
+    </div>
+    <div class="stat-card today">
+      <span class="stat-number">{{ tasksService.todayTasks() }}</span>
+      <span class="stat-label">Creati oggi</span>
+    </div>
+  </section>
+
+  <section class="quick-actions">
+    <h3>Azioni rapide</h3>
+    <div class="actions-row">
+      <a class="action-btn primary" routerLink="/tasks">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 11l3 3L22 4"/>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        Vedi Tasks
+      </a>
+      <a class="action-btn secondary" routerLink="/users">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Vedi Users
+      </a>
+    </div>
+  </section>
+
+  <section class="recent-tasks">
+    <h3>Ultimi task</h3>
+    @if (tasksService.recentTasks().length > 0) {
+      <ul>
+        @for (task of tasksService.recentTasks(); track task.id) {
+          <li>
+            <div class="task-info">
+              <span class="task-name">{{ task.attributes.name }}</span>
+              <span class="task-date">{{ task.attributes.created_at }}</span>
+            </div>
+            <span class="badge" [class]="'badge-' + task.attributes.priority">
+              {{ task.attributes.priority }}
+            </span>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="empty">Nessun task ancora. Creane uno!</p>
+    }
+  </section>
 </div>
