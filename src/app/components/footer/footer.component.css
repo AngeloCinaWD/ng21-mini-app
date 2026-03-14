@@ -1,0 +1,15 @@
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  background: #1976d2;
+  color: white;
+  font-size: 14px;
+}
+
+span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

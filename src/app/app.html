@@ -1,4 +1,9 @@
 @if (authService.logged()) {
   <app-header />
 }
-<router-outlet />
+<main>
+  <router-outlet />
+</main>
+@if (authService.logged()) {
+  <app-footer />
+}
