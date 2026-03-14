@@ -1,21 +1,73 @@
 .users-container {
-  max-width: 600px;
-  margin: 40px auto;
   padding: 24px;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
-h2 {
-  margin: 0 0 24px;
+.table-wrapper {
+  flex: 1;
+  overflow-y: auto;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
 }
 
-li {
-  padding: 12px;
-  border-bottom: 1px solid #eee;
+th:last-child,
+td:last-child {
+  width: 40px;
+  text-align: center;
+}
+
+thead {
+  background: #1976d2;
+  color: white;
+}
+
+th, td {
+  padding: 8px 12px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+th {
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+td {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+tbody tr:hover {
+  background: #f5f5f5;
+}
+
+.detail-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #1976d2;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.detail-btn:hover {
+  color: #0d47a1;
+}
+
+.empty {
+  text-align: center;
+  color: #999;
+  padding: 24px;
 }
 
 .error {

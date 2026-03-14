@@ -1,0 +1,36 @@
+<div class="backdrop">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>{{ user().name }}</h3>
+      <button class="close-btn" (click)="close.emit()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="section">
+        <h4>Info</h4>
+        <div class="field"><span class="label">Id</span><span>{{ user().id }}</span></div>
+        <div class="field"><span class="label">Username</span><span>{{ user().username }}</span></div>
+        <div class="field"><span class="label">Email</span><span>{{ user().email }}</span></div>
+        <div class="field"><span class="label">Phone</span><span>{{ user().phone }}</span></div>
+        <div class="field"><span class="label">Website</span><span>{{ user().website }}</span></div>
+      </div>
+      <div class="section">
+        <h4>Address</h4>
+        <div class="field"><span class="label">Street</span><span>{{ user().address.street }}, {{ user().address.suite }}</span></div>
+        <div class="field"><span class="label">City</span><span>{{ user().address.city }}</span></div>
+        <div class="field"><span class="label">Zipcode</span><span>{{ user().address.zipcode }}</span></div>
+        <div class="field"><span class="label">Geo</span><span>{{ user().address.geo.lat }}, {{ user().address.geo.lng }}</span></div>
+      </div>
+      <div class="section">
+        <h4>Company</h4>
+        <div class="field"><span class="label">Name</span><span>{{ user().company.name }}</span></div>
+        <div class="field"><span class="label">Catch Phrase</span><span>{{ user().company.catchPhrase }}</span></div>
+        <div class="field"><span class="label">BS</span><span>{{ user().company.bs }}</span></div>
+      </div>
+    </div>
+  </div>
+</div>

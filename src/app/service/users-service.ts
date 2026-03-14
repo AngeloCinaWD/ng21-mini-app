@@ -2,7 +2,7 @@ import { HttpClient, httpResource } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { User } from '../interface/user';
 import { Error } from '../interface/error';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +27,10 @@ export class UsersService {
   });
 
   errorPublic = computed<Error>(() => this.error());
+
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${this.urlJsonPlaceholder}/${id}`);
+  }
 
   constructor() {
     this.http
