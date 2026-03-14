@@ -13,9 +13,6 @@
   </nav>
 
   <div class="user-section">
-    <div class="avatar" [title]="authService.userNamePublic()">
-      {{ authService.userInitials() }}
-    </div>
     <button class="logout-btn" (click)="authService.logout()">{{ lang.t().header_logout }}</button>
     <div class="lang-dropdown">
       <button class="lang-current" (click)="toggleDropdown()">
@@ -34,6 +31,9 @@
           }
         </div>
       }
+    </div>
+    <div class="avatar" [title]="authService.userNamePublic()">
+      {{ authService.userInitials() }}
     </div>
   </div>
 </header>
