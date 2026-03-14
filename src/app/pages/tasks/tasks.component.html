@@ -16,32 +16,42 @@
   <div class="table-wrapper">
     <table>
       <colgroup>
-        <col class="col-name" />
-        <col class="col-description" />
-        <col class="col-priority" />
-        <col class="col-date" />
-        <col class="col-actions" />
+        <col />
+        <col style="width: 100%" />
+        <col />
+        <col />
+        <col />
       </colgroup>
       <thead>
         <tr>
           <th>Nome</th>
-          <th>Descrizione</th>
-          <th>Priority</th>
-          <th>Creato il</th>
+          <th class="description-header">Descrizione</th>
+          <th class="sortable center" (click)="toggleSort('priority')">
+            Priority
+            @if (sortColumn() === 'priority') {
+              <span class="sort-icon">{{ sortDirection() === 'asc' ? '▲' : '▼' }}</span>
+            }
+          </th>
+          <th class="sortable center" (click)="toggleSort('created_at')">
+            Creato il
+            @if (sortColumn() === 'created_at') {
+              <span class="sort-icon">{{ sortDirection() === 'asc' ? '▲' : '▼' }}</span>
+            }
+          </th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        @for (task of tasksService.tasks(); track task.id) {
+        @for (task of sortedTasks(); track task.id) {
           <tr>
             <td>{{ task.attributes.name }}</td>
-            <td>{{ task.attributes.description }}</td>
-            <td>
+            <td class="description-cell">{{ task.attributes.description }}</td>
+            <td class="center">
               <span class="badge" [class]="'badge-' + task.attributes.priority">
                 {{ task.attributes.priority }}
               </span>
             </td>
-            <td>{{ task.attributes.created_at }}</td>
+            <td class="center">{{ task.attributes.created_at }}</td>
             <td class="actions">
               <button class="action-btn edit-btn" (click)="openEdit(task)" title="Modifica">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
