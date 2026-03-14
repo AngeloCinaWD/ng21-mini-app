@@ -32,8 +32,8 @@
         </div>
       }
     </div>
-    <div class="avatar" [title]="authService.userNamePublic()">
+    <a class="avatar" routerLink="/profile" [title]="authService.userNamePublic()">
       {{ authService.userInitials() }}
-    </div>
+    </a>
   </div>
 </header>

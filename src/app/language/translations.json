@@ -104,6 +104,18 @@
 
     "footer_powered": "Powered by",
 
+    "profile_title": "Profilo",
+    "profile_name": "Nome",
+    "profile_email": "Email",
+    "profile_member_since": "Membro dal",
+    "profile_language": "Lingua predefinita",
+    "profile_password": "Nuova password",
+    "profile_confirm_password": "Conferma password",
+    "profile_save": "Salva modifiche",
+    "profile_saved": "Profilo aggiornato con successo",
+    "profile_password_min": "La password deve avere almeno 8 caratteri",
+    "profile_password_mismatch": "Le password non coincidono",
+
     "confirm_cancel": "Annulla",
     "confirm_confirm": "Conferma"
   },
@@ -211,6 +223,18 @@
     "header_logout": "Logout",
 
     "footer_powered": "Powered by",
+
+    "profile_title": "Profile",
+    "profile_name": "Name",
+    "profile_email": "Email",
+    "profile_member_since": "Member since",
+    "profile_language": "Default language",
+    "profile_password": "New password",
+    "profile_confirm_password": "Confirm password",
+    "profile_save": "Save changes",
+    "profile_saved": "Profile updated successfully",
+    "profile_password_min": "Password must be at least 8 characters",
+    "profile_password_mismatch": "Passwords do not match",
 
     "confirm_cancel": "Cancel",
     "confirm_confirm": "Confirm"
@@ -320,6 +344,18 @@
 
     "footer_powered": "Desarrollado por",
 
+    "profile_title": "Perfil",
+    "profile_name": "Nombre",
+    "profile_email": "Email",
+    "profile_member_since": "Miembro desde",
+    "profile_language": "Idioma predeterminado",
+    "profile_password": "Nueva contraseña",
+    "profile_confirm_password": "Confirmar contraseña",
+    "profile_save": "Guardar cambios",
+    "profile_saved": "Perfil actualizado con éxito",
+    "profile_password_min": "La contraseña debe tener al menos 8 caracteres",
+    "profile_password_mismatch": "Las contraseñas no coinciden",
+
     "confirm_cancel": "Cancelar",
     "confirm_confirm": "Confirmar"
   },
@@ -428,6 +464,18 @@
 
     "footer_powered": "Propulsé par",
 
+    "profile_title": "Profil",
+    "profile_name": "Nom",
+    "profile_email": "Email",
+    "profile_member_since": "Membre depuis",
+    "profile_language": "Langue par défaut",
+    "profile_password": "Nouveau mot de passe",
+    "profile_confirm_password": "Confirmer le mot de passe",
+    "profile_save": "Enregistrer les modifications",
+    "profile_saved": "Profil mis à jour avec succès",
+    "profile_password_min": "Le mot de passe doit contenir au moins 8 caractères",
+    "profile_password_mismatch": "Les mots de passe ne correspondent pas",
+
     "confirm_cancel": "Annuler",
     "confirm_confirm": "Confirmer"
   },
@@ -535,6 +583,18 @@
     "header_logout": "Abmelden",
 
     "footer_powered": "Entwickelt von",
+
+    "profile_title": "Profil",
+    "profile_name": "Name",
+    "profile_email": "Email",
+    "profile_member_since": "Mitglied seit",
+    "profile_language": "Standardsprache",
+    "profile_password": "Neues Passwort",
+    "profile_confirm_password": "Passwort bestätigen",
+    "profile_save": "Änderungen speichern",
+    "profile_saved": "Profil erfolgreich aktualisiert",
+    "profile_password_min": "Das Passwort muss mindestens 8 Zeichen lang sein",
+    "profile_password_mismatch": "Die Passwörter stimmen nicht überein",
 
     "confirm_cancel": "Abbrechen",
     "confirm_confirm": "Bestätigen"
