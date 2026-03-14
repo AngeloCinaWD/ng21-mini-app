@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { User } from '../../interface/user';
+import { UserJP } from '../../interface/userJp';
 
 @Component({
   selector: 'app-user-modal',
@@ -8,6 +8,6 @@ import { User } from '../../interface/user';
   styleUrl: './user-modal.component.css',
 })
 export class UserModalComponent {
-  user = input.required<User>();
+  user = input.required<UserJP>();
   close = output<void>();
 }

@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { UsersService } from '../../service/users-service';
 import { UserModalComponent } from '../../components/user-modal/user-modal.component';
-import { User } from '../../interface/user';
+import { UserJP } from '../../interface/userJp';
 
 @Component({
   selector: 'app-users',
@@ -12,7 +12,7 @@ import { User } from '../../interface/user';
 export class UsersComponent {
   usersService = inject(UsersService);
 
-  selectedUser = signal<User | null>(null);
+  selectedUser = signal<UserJP | null>(null);
 
   openUserDetail(userId: number) {
     this.usersService.getUserById(userId).subscribe((user) => {

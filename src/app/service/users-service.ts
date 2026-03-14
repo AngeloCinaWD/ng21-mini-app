@@ -1,6 +1,6 @@
 import { HttpClient, httpResource } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { User } from '../interface/user';
+import { UserJP } from '../interface/userJp';
 import { Error } from '../interface/error';
 import { map, Observable } from 'rxjs';
 
@@ -12,14 +12,14 @@ export class UsersService {
 
   private http = inject(HttpClient);
 
-  private users = signal<User[]>([]);
+  private users = signal<UserJP[]>([]);
 
-  usersPublic = computed<User[]>(() => this.users());
+  usersPublic = computed<UserJP[]>(() => this.users());
 
-  usersHttpResource = httpResource<User[]>(() => this.urlJsonPlaceholder);
+  usersHttpResource = httpResource<UserJP[]>(() => this.urlJsonPlaceholder);
 
-  usernameUsers = computed<User['username'][]>(() =>
-    (this.usersHttpResource.value() ?? []).map((user: User) => user.username),
+  usernameUsers = computed<UserJP['username'][]>(() =>
+    (this.usersHttpResource.value() ?? []).map((user: UserJP) => user.username),
   );
 
   private error = signal<Error>({
@@ -28,13 +28,13 @@ export class UsersService {
 
   errorPublic = computed<Error>(() => this.error());
 
-  getUserById(id: number): Observable<User> {
-    return this.http.get<User>(`${this.urlJsonPlaceholder}/${id}`);
+  getUserById(id: number): Observable<UserJP> {
+    return this.http.get<UserJP>(`${this.urlJsonPlaceholder}/${id}`);
   }
 
   constructor() {
     this.http
-      .get<User[]>(this.urlJsonPlaceholder)
+      .get<UserJP[]>(this.urlJsonPlaceholder)
       .pipe(map((users) => users))
       .subscribe({
         next: (data) => this.users.set(data),

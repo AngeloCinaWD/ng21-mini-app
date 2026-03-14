@@ -1,0 +1,86 @@
+<div class="tasks-container">
+  @if (successMessage()) {
+    <div class="success-toast">{{ successMessage() }}</div>
+  }
+
+  <div class="tasks-header">
+    <button class="create-btn" (click)="openCreate()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"/>
+        <line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      Nuovo Task
+    </button>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <colgroup>
+        <col class="col-name" />
+        <col class="col-description" />
+        <col class="col-priority" />
+        <col class="col-date" />
+        <col class="col-actions" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrizione</th>
+          <th>Priority</th>
+          <th>Creato il</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (task of tasksService.tasks(); track task.id) {
+          <tr>
+            <td>{{ task.attributes.name }}</td>
+            <td>{{ task.attributes.description }}</td>
+            <td>
+              <span class="badge" [class]="'badge-' + task.attributes.priority">
+                {{ task.attributes.priority }}
+              </span>
+            </td>
+            <td>{{ task.attributes.created_at }}</td>
+            <td class="actions">
+              <button class="action-btn edit-btn" (click)="openEdit(task)" title="Modifica">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+              </button>
+              <button class="action-btn delete-btn" (click)="confirmDelete(task)" title="Elimina">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"/>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  <line x1="10" y1="11" x2="10" y2="17"/>
+                  <line x1="14" y1="11" x2="14" y2="17"/>
+                </svg>
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="empty">Nessun task trovato</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+@if (showFormModal()) {
+  <app-task-form-modal
+    [task]="editingTask()"
+    (close)="closeFormModal()"
+    (saved)="onSaved()"
+  />
+}
+
+@if (deletingTask()) {
+  <app-confirm-modal
+    message="Sei sicuro di voler eliminare questo task?"
+    (confirm)="executeDelete()"
+    (cancel)="cancelDelete()"
+  />
+}

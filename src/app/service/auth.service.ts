@@ -2,16 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { HTTPHEADERREQUEST } from '../helper/httpHeaderRequest';
+import { AuthResponse } from '../interface/authResponse';
 
 const TOKEN_KEY = 'auth_token';
 const USER_NAME_KEY = 'auth_user_name';
-
-interface AuthResponse {
-  data: {
-    user: { name: string };
-    token: string;
-  };
-}
 
 @Injectable({
   providedIn: 'root',

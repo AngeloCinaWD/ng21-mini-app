@@ -1,0 +1,71 @@
+<div class="backdrop">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>{{ isEdit() ? 'Modifica Task' : 'Nuovo Task' }}</h3>
+      <button class="close-btn" (click)="close.emit()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (submit)="onSubmit($event)">
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input id="name" type="text" [formField]="taskForm.name" />
+          @if (taskForm.name().invalid() && taskForm.name().touched()) {
+            <div class="field-errors">
+              @for (err of taskForm.name().errors(); track err.kind) {
+                <span>{{ err.message }}</span>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="description">Descrizione</label>
+          <textarea
+            id="description"
+            rows="3"
+            [formField]="taskForm.description"
+            #descriptionRef
+            (input)="autoResizeTextarea()"
+          ></textarea>
+          @if (taskForm.description().invalid() && taskForm.description().touched()) {
+            <div class="field-errors">
+              @for (err of taskForm.description().errors(); track err.kind) {
+                <span>{{ err.message }}</span>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="priority">Priority</label>
+          <select id="priority" [formField]="taskForm.priority" [class.placeholder]="taskForm.priority().value() === ''">
+            <option value="" disabled>Seleziona un livello di priorità</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+          @if (taskForm.priority().invalid() && taskForm.priority().touched()) {
+            <div class="field-errors">
+              @for (err of taskForm.priority().errors(); track err.kind) {
+                <span>{{ err.message }}</span>
+              }
+            </div>
+          }
+        </div>
+
+        @if (error()) {
+          <p class="error">{{ error() }}</p>
+        }
+
+        <button type="submit" [disabled]="taskForm().invalid()">
+          {{ isEdit() ? 'Salva' : 'Crea' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
