@@ -1,0 +1,17 @@
+<div class="users-container">
+  <h2>Users</h2>
+
+  @if (usersService.errorPublic().status) {
+    <p class="error">{{ usersService.errorPublic().message }}</p>
+  } @else {
+    <ul>
+      @for (user of usersService.usersPublic(); track user.id) {
+        <li>
+          <strong>{{ user.name }}</strong> — {{ user.email }}
+        </li>
+      } @empty {
+        <li>Nessun utente trovato</li>
+      }
+    </ul>
+  }
+</div>

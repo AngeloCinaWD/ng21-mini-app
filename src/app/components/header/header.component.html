@@ -1,0 +1,12 @@
+<header>
+  <nav class="nav-left">
+    <a class="app-title" routerLink="/home">ng21-mini-app</a>
+    <a class="nav-link" routerLink="/users">Users</a>
+  </nav>
+  <div class="user-section">
+    <div class="avatar" [title]="authService.userNamePublic()">
+      {{ authService.userInitials() }}
+    </div>
+    <button (click)="authService.logout()">Logout</button>
+  </div>
+</header>
